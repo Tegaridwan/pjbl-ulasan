@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\TambahUlasanController;     
+use App\Http\Controllers\TambahUlasanController;
 use App\Models\penjual;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 
 // 1. Route Beranda / Dashboard: Mengambil semua data penjual
 Route::get('/', function () {
@@ -21,8 +23,10 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout'])->name('auth.logout');
     Route::get('/homePenjual', function () {
-        return view('homePenjual');
+        $penjual = \App\Models\penjual::find(Auth::id());
+        return view('homePenjual', compact('penjual'));
     })->name('homePenjual');
+    Route::post('simpan-penjual', [\App\Http\Controllers\penjualController::class, 'store'])->name('penjual.store');
 });
 
 Route::get('/penjual/{id}', function ($id) {
