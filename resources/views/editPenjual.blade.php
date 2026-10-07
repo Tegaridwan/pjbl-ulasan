@@ -33,7 +33,7 @@
         </div>
     @endif
 
-    <form action="{{ route('penjual.edit') }}" method="POST" style="max-width: 500px;">
+    <form action="{{ route('penjual.store') }}" method="POST" style="max-width: 500px;">
         @csrf
         
         <div style="margin-bottom: 10px;">
