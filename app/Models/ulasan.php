@@ -15,4 +15,9 @@ class ulasan extends Model
         'Ulasan',
         'Rating',
     ];
+
+    public function penjual()
+    {
+        return $this->belongsTo(penjual::class, 'Id_Penjual', 'Id_Penjual');
+    }
 }
