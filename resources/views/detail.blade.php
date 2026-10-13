@@ -62,7 +62,7 @@
 @if($ulasanList->count() > 3)
 <script>
     const btn = document.getElementById('toggleReviewBtn');
-    const sisa = {{ $ulasanList->count() - 3 }};
+    const sisa = Number("{{ $ulasanList->count() - 3 }}");
     btn.addEventListener('click', function () {
         const extra = document.querySelectorAll('.extra-review');
         const sembunyi = extra[0].classList.contains('hidden');

@@ -53,6 +53,8 @@ Route::get('/penjual/{id}', function ($id) {
     return view('detail', compact('penjual'));
 })->name('penjual.detail');
 
+
+// 5. Routes untuk Tambah Ulasan
 Route::get('/ulasan/{id}', function ($id) {
     $penjual = penjual::findOrFail($id);
     return view('formulasan', compact('penjual'));
