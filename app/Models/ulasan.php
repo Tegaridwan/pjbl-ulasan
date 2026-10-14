@@ -14,6 +14,7 @@ class ulasan extends Model
         'Nama_Pembeli',
         'Ulasan',
         'Rating',
+        'respon',
     ];
 
     public function penjual()

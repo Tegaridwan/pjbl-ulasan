@@ -10,9 +10,9 @@
         <a href="{{ route('penjual.ulasan') }}"
            class="px-3 py-3 rounded-xl font-['Libre_Baskerville',serif] text-[15px] {{ request()->routeIs('penjual.ulasan') ? 'bg-[linear-gradient(180deg,#82b4ff,#cfc4ff)] text-[#2878eb] font-bold' : '' }}">★ Ulasan</a>
 
-        <form method="POST" action="{{ route('auth.logout') }}" class="md:mt-auto">
+        <form id="logout-form" method="POST" action="{{ route('auth.logout') }}" class="md:mt-auto">
             @csrf
-            <button type="submit" class="px-3 py-3 text-[#e03a3a] font-bold cursor-pointer">⇥ Logout</button>
+            <button id="btn-logout" type="submit" class="px-3 py-3 text-[#e03a3a] font-bold cursor-pointer">⇥ Logout</button>
         </form>
     </aside>
 
@@ -20,4 +20,15 @@
         @yield('isi')
     </section>
 </div>
+
+<script>
+    document.getElementById('btn-logout').addEventListener('click', function(e) {
+        e.preventDefault();
+        if (confirm('Apakah Anda yakin ingin keluar dari aplikasi?')) {
+            document.getElementById('logout-form').submit();
+        }
+    });
+</script>
 @endsection
+
+

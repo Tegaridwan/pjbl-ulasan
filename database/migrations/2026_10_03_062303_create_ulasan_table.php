@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('Nama_Pembeli', 100);
             $table->string('Ulasan', 250);
             $table->unsignedInteger('Rating');
+            $table->string('respon', 250)->nullable();
             $table->timestamps();
         });
     }

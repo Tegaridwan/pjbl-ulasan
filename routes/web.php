@@ -24,6 +24,7 @@ Route::middleware('guest')->group(function () {
 // 3. Auth Routes (Khusus Penjual setelah Login)
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+
     
     // Halaman Utama / Dashboard Penjual
     Route::get('/homePenjual', function () {
@@ -42,6 +43,11 @@ Route::middleware('auth')->group(function () {
         $penjual = penjual::find(Auth::id());
         return view('ViewUlasan', compact('penjual'));
     })->name('penjual.ulasan');
+
+    // Route respon ulasan
+    Route::post('ulasan/{id}/respon', [penjualController::class, 'balas'])->name('ulasan.balas');
+
+    Route::delete('ulasan/{id}', [penjualController::class, 'destroy'])->name('ulasan.destroy');
 
     // Proses Simpan / Update Data Penjual
     Route::post('simpan-penjual', [penjualController::class, 'store'])->name('penjual.store');

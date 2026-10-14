@@ -40,6 +40,10 @@
     <p id="tidakAda" class="hidden py-8 text-center text-[#6b7385]">Penjual tidak ditemukan.</p>
 </section>
 
+<footer class="bg-[#f5f6fa] text-sm text-[#6b7385] text-center py-6">
+    &copy; 2026 Ulasan Penjual. All rights reserved.
+</footer>
+
 <script>
     document.getElementById('cari').addEventListener('input', function () {
         const q = this.value.toLowerCase().trim();

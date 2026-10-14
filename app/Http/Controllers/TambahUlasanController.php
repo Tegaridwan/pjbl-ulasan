@@ -26,8 +26,10 @@ class TambahUlasanController extends Controller
             'Nama_Pembeli' => $validatedData['Nama_Pembeli'],
             'Ulasan' => $validatedData['Ulasan'],
             'Rating' => $validatedData['Rating'],
+            'respon' => null,
         ]);
 
         return redirect()->back()->with('success', 'Ulasan berhasil ditambahkan!');
     }
+
 }
