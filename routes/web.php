@@ -45,6 +45,9 @@ Route::middleware('auth')->group(function () {
 
     // Proses Simpan / Update Data Penjual
     Route::post('simpan-penjual', [penjualController::class, 'store'])->name('penjual.store');
+
+    // Hapus Ulasan (khusus penjual yang login)
+    Route::delete('/ulasan/{id}', [penjualController::class, 'hapusUlasan'])->name('ulasan.destroy');
 });
 
 // 4. Public Routes (Akses Umum Pembeli)
