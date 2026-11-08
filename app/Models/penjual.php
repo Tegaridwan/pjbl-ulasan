@@ -10,11 +10,17 @@ class penjual extends Model
     protected $primaryKey = 'Id_Penjual';
 
     protected $fillable = [
+        'Id_User',
         'Nama_Penjual',
         'Deskripsi',
         'Alamat_Penjual',
         'No_Telp_Penjual',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'Id_User', 'id');
+    }
 
     public function ulasan()
     {

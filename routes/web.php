@@ -27,19 +27,19 @@ Route::middleware('auth')->group(function () {
     
     // Halaman Utama / Dashboard Penjual
     Route::get('/homePenjual', function () {
-        $penjual = penjual::find(Auth::id());
+        $penjual = Auth::user()->penjual;
         return view('homePenjual', compact('penjual'));
     })->name('homePenjual');
 
     // Halaman Form Edit Data Penjual
     Route::get('/penjual/edit', function () {
-        $penjual = penjual::find(Auth::id());
+        $penjual = Auth::user()->penjual;
         return view('editPenjual', compact('penjual'));
     })->name('penjual.edit');
 
     // Halaman Lihat Ulasan khusus Penjual
     Route::get('/penjual/ulasan', function () {
-        $penjual = penjual::find(Auth::id());
+        $penjual = Auth::user()->penjual;
         return view('ViewUlasan', compact('penjual'));
     })->name('penjual.ulasan');
 

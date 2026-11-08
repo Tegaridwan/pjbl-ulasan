@@ -17,9 +17,8 @@ class penjualController extends Controller
             'No_Telp_Penjual' => 'required|string|max:15',
         ]);
 
-        // Simpan data penjual ke database
         Penjual::updateOrCreate(
-            ['Id_Penjual' => Auth::id()], // Gunakan Id_Penjual dari pengguna yang sedang login
+            ['Id_User' => Auth::id()],
             [
                 'Nama_Penjual' => $request->Nama_Penjual,
                 'Deskripsi' => $request->Deskripsi,
@@ -28,7 +27,6 @@ class penjualController extends Controller
             ]
         );
 
-        // Redirect ke halaman home setelah berhasil menyimpan penjual
         return redirect()->route('homePenjual')->with('success', 'Toko berhasil disimpan!');
     }
 }

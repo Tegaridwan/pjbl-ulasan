@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(ulasan::class, 'Id_Penjual', 'id');
     }
+
+    public function penjual()
+    {
+        return $this->hasOne(penjual::class, 'Id_User', 'id');
+    }
 }
