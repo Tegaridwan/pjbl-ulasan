@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\penjualController;
 use App\Http\Controllers\TambahUlasanController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\ResponController;
 use App\Models\penjual;
 use Illuminate\Support\Facades\Auth;

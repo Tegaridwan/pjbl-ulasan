@@ -6,9 +6,9 @@
 
 <div class="flex flex-wrap items-center justify-between gap-4 mb-1.5">
     <h1 class="text-3xl font-bold">Ulasan Pelanggan</h1>
-    <a href="{{ route('export.pdf') }}"
+    <a href="{{ route('export.excel') }}"
        class="inline-block px-5 py-2.5 rounded-lg font-bold bg-[#2878eb] text-white">
-        Download PDF
+        Download Excel
     </a>
 </div>
 <p class="text-sm text-[#6b7385] mb-7">Semua ulasan yang masuk ke toko.</p>
