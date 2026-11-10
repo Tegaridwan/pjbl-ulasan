@@ -3,7 +3,6 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\penjualController;
 use App\Http\Controllers\TambahUlasanController;
-use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\ResponController;
 use App\Models\penjual;
 use Illuminate\Support\Facades\Auth;
@@ -47,9 +46,6 @@ Route::middleware('auth')->group(function () {
 
     // Proses Simpan / Update Data Penjual
     Route::post('simpan-penjual', [penjualController::class, 'store'])->name('penjual.store');
-
-    // Download pdf untuk semua ulasan toko milik penjual yang login
-    Route::get('/export-pdf', [LaporanController::class, 'exportPdf'])->name('export.pdf');
 });
 
 // 4. Public Routes (Akses Umum Pembeli)
