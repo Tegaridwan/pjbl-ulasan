@@ -46,6 +46,9 @@ Route::middleware('auth')->group(function () {
 
     // Proses Simpan / Update Data Penjual
     Route::post('simpan-penjual', [penjualController::class, 'store'])->name('penjual.store');
+
+    // Download grafik rata" ulasan ke excel
+    Route::get('/export-excel', [LaporanController::class, 'exportExcel'])->name('export.excel');
 });
 
 // 4. Public Routes (Akses Umum Pembeli)
