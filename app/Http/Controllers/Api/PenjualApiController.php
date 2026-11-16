@@ -11,7 +11,7 @@ class PenjualApiController extends Controller
     // logika untuk menampilkan semua penjual
     public function index()
     {
-        // Logic to retrieve and return a list of sellers
+       
         $penjualList = penjual::all();
 
         return response()->json([
@@ -23,7 +23,7 @@ class PenjualApiController extends Controller
     // logika untuk menampilkan detail penjual berdasarkan ID
     public function show($id)
     {
-        // Logic to retrieve and return a specific seller by ID
+        
         $penjual = penjual::find($id);
 
         if (!$penjual) {
@@ -42,7 +42,7 @@ class PenjualApiController extends Controller
     // logika untuk menampilkan detail penjual berdasarkan ID user yang sedang login
     public function myStore(Request $request)
     {
-        // Mengambil ID user dari Bearer Token Sanctum (pengganti Auth::id())
+        
         $userId = $request->user()->id;
 
         $penjual = penjual::with(['ulasan.respon'])->find($userId);
@@ -63,7 +63,7 @@ class PenjualApiController extends Controller
     // logika untuk menampilkan semua ulasan penjual berdasarkan ID user yang sedang login
     public function myUlasan(Request $request)
     {
-        // Mengambil ID user dari Bearer Token Sanctum (pengganti Auth::id())
+    
         $userId = $request->user()->id;
         $penjual = penjual::with('ulasan.respon')->find($userId);
 
@@ -91,7 +91,7 @@ class PenjualApiController extends Controller
             'No_Telp_Penjual' => 'required|string|max:15',
         ]);
 
-        // Mengambil ID user dari Bearer Token Sanctum (pengganti Auth::id())
+        
         $userId = $request->user()->id;
 
         // Simpan data penjual ke database
