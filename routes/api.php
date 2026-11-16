@@ -48,15 +48,3 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
 
-
-
-
-// Route::get('/ulasan/{id}', [UlasanApiController::class, 'show']);
-// Route::post('/ulasan', [UlasanApiController::class, 'store']);
-// Route::put('/ulasan/{id}', [UlasanApiController::class, 'update']);
-// Route::delete('/ulasan/{id}', [UlasanApiController::class, 'destroy']);
-
-// // Authentication routes
-// Route::post('/register', [App\Http\Controllers\Api\AuthController::class, 'register']);
-// Route::post('/login', [App\Http\Controllers\Api\AuthController::class, 'login']);
-// Route::get('/ulasan', [UlasanApiController::class, 'index']);
