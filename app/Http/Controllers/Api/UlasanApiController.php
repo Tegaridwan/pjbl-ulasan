@@ -46,6 +46,10 @@ class UlasanApiController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->bearerToken() !== 'TOKEN-RAHASIA-123') { 
+            return response()->json(['message' => 'Unauthorized'], 401); 
+        } else {
+
         $validatedData = $request->validate([
             'Id_Penjual' => 'required|exists:penjual,Id_Penjual',
             'Nama_Pembeli' => 'required|string|max:100',
@@ -59,5 +63,6 @@ class UlasanApiController extends Controller
             'message' => 'Ulasan berhasil ditambahkan',
             'data' => $data
         ], 201);
+        }
     }
 }
