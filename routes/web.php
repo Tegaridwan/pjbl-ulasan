@@ -11,8 +11,8 @@ use App\Http\Controllers\KategoriController;
 
 // 1. Public / Guest Routes (Bisa Diakses Siapa Saja)
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-
 Route::get('/penjual/{id}', [PenjualController::class, 'show'])->name('penjual.detail');
+Route::get('/')
 
 Route::prefix('penjual')->group(function () {
     Route::get('/{id}', [PenjualController::class, 'show'])->name('penjual.detail');
