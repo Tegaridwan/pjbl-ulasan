@@ -13,6 +13,7 @@ use App\Http\Controllers\KategoriController;
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/penjual/{id}', [PenjualController::class, 'show'])->name('penjual.detail');
 Route::get('/ulasan/{id}', [TambahUlasanController::class, 'create'])->name('ulasan.create');
+
 Route::prefix('penjual')->group(function () {
     Route::get('/{id}', [PenjualController::class, 'show'])->name('penjual.detail');
 });
