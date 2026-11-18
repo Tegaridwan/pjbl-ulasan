@@ -5,17 +5,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UlasanApiController;
 use App\Http\Controllers\Api\PenjualApiController;
 
-// ==========================================
-// 1. ROUTE AKSES UMUM (PUBLIK / TANPA LOGIN)
-// ==========================================
 Route::post('/register', [App\Http\Controllers\Api\AuthController::class, 'register']);
 Route::post('/login', [App\Http\Controllers\Api\AuthController::class, 'login']);
 
 // Tambahkan rute publik untuk pembeli di sini:
-Route::get('/penjual', [PenjualApiController::class, 'index']);      // Menampilkan daftar penjual
-Route::get('/penjual/{id}', [PenjualApiController::class, 'show']); // Menampilkan detail penjual
-Route::get('/ulasan', [UlasanApiController::class, 'index']);        // Menampilkan daftar ulasan
-Route::post('/ulasan', [UlasanApiController::class, 'store']);       // Menambah ulasan baru
+Route::get('/penjual', [PenjualApiController::class, 'index']);
+Route::get('/penjual/{id}', [PenjualApiController::class, 'show']);
+Route::get('/ulasan', [UlasanApiController::class, 'index']);   
+Route::post('/ulasan', [UlasanApiController::class, 'store']);       
 
 
 // ==========================================
