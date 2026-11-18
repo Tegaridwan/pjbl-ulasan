@@ -12,7 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('penjual', function (Blueprint $table) {
-            $table->id('Id_Penjual'); // Primary Key kustom
+            $table->id('Id_Penjual');
+
+            $table->unsignedBigInteger('Id_Kategori')->nullable();
+            $table->foreign('Id_Kategori')->references('Id_Kategori')->on('kategoris')->onDelete('set null');
+
             $table->string('Nama_Penjual', 100);
             $table->string('Deskripsi', 255);
             $table->string('Alamat_Penjual', 255);

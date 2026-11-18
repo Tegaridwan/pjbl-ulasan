@@ -1,19 +1,29 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\penjualController;
-use App\Http\Controllers\TambahUlasanController;
-use App\Models\penjual;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PenjualController;
+use App\Http\Controllers\ResponController;
+use App\Http\Controllers\TambahUlasanController;
+use App\Http\Controllers\KategoriController;
 
-// 1. Route Beranda / Dashboard Pembeli
-Route::get('/', function () {
-    $penjualList = penjual::all();
-    return view('dashboard', compact('penjualList'));
-})->name('dashboard');
 
-// 2. Auth Routes Guest (Login & Register khusus Penjual)
+// 1. Public / Guest Routes (Bisa Diakses Siapa Saja)
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/penjual/{id}', [PenjualController::class, 'show'])->name('penjual.detail');
+Route::get('/ulasan/{id}', [TambahUlasanController::class, 'create'])->name('ulasan.create');
+
+Route::prefix('penjual')->group(function () {
+    Route::get('/{id}', [PenjualController::class, 'show'])->name('penjual.detail');
+});
+
+Route::prefix('ulasan')->group(function () {
+    Route::get('/{id}', [TambahUlasanController::class, 'create'])->name('ulasan.create');
+    Route::post('/', [TambahUlasanController::class, 'store'])->name('ulasan.store');
+});
+
+// 2. Guest Routes (Khusus Pengunjung yang Belum Login)
 Route::middleware('guest')->group(function () {
     Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
     Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
@@ -21,45 +31,23 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 });
 
-// 3. Auth Routes (Khusus Penjual setelah Login)
+// 3. Authenticated Routes (Harus Login)
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
-    
-    // Halaman Utama / Dashboard Penjual
-    Route::get('/homePenjual', function () {
-        $penjual = penjual::find(Auth::id());
-        return view('homePenjual', compact('penjual'));
-    })->name('homePenjual');
 
-    // Halaman Form Edit Data Penjual
-    Route::get('/penjual/edit', function () {
-        $penjual = penjual::find(Auth::id());
-        return view('editPenjual', compact('penjual'));
-    })->name('penjual.edit');
+    // --- AREA PENJUAL ---
+    Route::get('/homePenjual', [PenjualController::class, 'dashboard'])->name('homePenjual');
+    Route::get('/penjual/edit', [PenjualController::class, 'edit'])->name('penjual.edit');
+    Route::post('/simpan-penjual', [PenjualController::class, 'store'])->name('penjual.store');
+    Route::get('/penjual/ulasan', [PenjualController::class, 'ulasan'])->name('penjual.ulasan');
+    Route::post('/respon', [ResponController::class, 'store'])->name('respon.store');
 
-    // Halaman Lihat Ulasan khusus Penjual
-    Route::get('/penjual/ulasan', function () {
-        $penjual = penjual::find(Auth::id());
-        return view('ViewUlasan', compact('penjual'));
-    })->name('penjual.ulasan');
-
-    // Proses Simpan / Update Data Penjual
-    Route::post('simpan-penjual', [penjualController::class, 'store'])->name('penjual.store');
+    // --- AREA ADMIN (Kelola Kategori) ---
+    Route::prefix('admin')->group(function () {
+        Route::get('/kategori', [KategoriController::class, 'index'])->name('kategori.index');
+        Route::post('/kategori', [KategoriController::class, 'store'])->name('kategori.store');
+        Route::delete('/kategori/{id}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
+        Route::get('/kategori/{id}/edit', [KategoriController::class, 'edit'])->name('kategori.edit');
+        Route::put('/kategori/{id}', [KategoriController::class, 'update'])->name('kategori.update');
+    });
 });
-
-// 4. Public Routes (Akses Umum Pembeli)
-Route::get('/penjual/{id}', function ($id) {
-    $penjual = penjual::findOrFail($id);
-    return view('detail', compact('penjual'));
-})->name('penjual.detail');
-
-Route::get('/ulasan/{id}', function ($id) {
-    $penjual = penjual::findOrFail($id);
-    return view('formulasan', compact('penjual'));
-})->name('ulasan.create');
-
-use App\Http\Controllers\ResponController;
-
-Route::post('/respon', [ResponController::class, 'store'])->name('respon.store');
-
-Route::post('/ulasan', [TambahUlasanController::class, 'store'])->name('ulasan.store');
