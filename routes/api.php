@@ -12,7 +12,8 @@ Route::post('/login', [App\Http\Controllers\Api\AuthController::class, 'login'])
 Route::get('/penjual', [PenjualApiController::class, 'index']);
 Route::get('/penjual/{id}', [PenjualApiController::class, 'show']);
 Route::get('/ulasan', [UlasanApiController::class, 'index']);   
-Route::post('/ulasan', [UlasanApiController::class, 'store']);       
+Route::post('/ulasan', [UlasanApiController::class, 'store']);
+Route::get('/ulasan/penjual/{id}', [UlasanApiController::class, 'byPenjual']);
 
 
 // ==========================================
