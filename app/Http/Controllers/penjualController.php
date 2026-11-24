@@ -72,18 +72,6 @@ class PenjualController extends Controller
         ]);
 
         Penjual::updateOrCreate(
-<<<<<<< HEAD
-            ['Id_User' => Auth::id()],
-            [
-                'Nama_Penjual' => $request->Nama_Penjual,
-                'Deskripsi' => $request->Deskripsi,
-                'Alamat_Penjual' => $request->Alamat_Penjual,
-                'No_Telp_Penjual' => $request->No_Telp_Penjual,
-            ]
-        );
-
-        return redirect()->route('homePenjual')->with('success', 'Toko berhasil disimpan!');
-=======
             ['Id_Penjual' => Auth::id()],
             $validatedData
         );
@@ -91,6 +79,5 @@ class PenjualController extends Controller
         return redirect()
             ->route('homePenjual')
             ->with('success', 'Toko berhasil disimpan!');
->>>>>>> main
     }
 }

@@ -10,11 +10,7 @@ class penjual extends Model
     protected $primaryKey = 'Id_Penjual';
 
     protected $fillable = [
-<<<<<<< HEAD
-        'Id_User',
-=======
         'Id_Kategori',
->>>>>>> main
         'Nama_Penjual',
         'Deskripsi',
         'Alamat_Penjual',
