@@ -32,13 +32,17 @@
             <label for="Id_Kategori" class="md:w-[140px] text-[13px] font-bold md:pt-4">Kategori Toko</label>
             <select id="Id_Kategori" name="Id_Kategori" required
                     class="w-full max-w-[550px] px-3.5 py-3.5 border border-[#dde1ea] rounded-xl text-sm outline-none focus:border-[#2878eb] bg-white">
-                <option value="">-- Pilih Kategori Toko --</option>
-                @foreach($kategoriList as $k)
-                    <option value="{{ $k->Id_Kategori }}" 
-                        {{ old('Id_Kategori', $penjual->Id_Kategori ?? '') == $k->Id_Kategori ? 'selected' : '' }}>
-                        {{ $k->Nama_Kategori }}
-                    </option>
-                @endforeach
+                @if($kategoriList->isEmpty())
+                    <option value="">Belum ada kategori. Silakan hubungi admin.</option>
+                @else
+                    <option value="">-- Pilih Kategori Toko --</option>
+                    @foreach($kategoriList as $k)
+                        <option value="{{ $k->Id_Kategori }}"
+                            {{ old('Id_Kategori', $penjual->Id_Kategori ?? '') == $k->Id_Kategori ? 'selected' : '' }}>
+                            {{ $k->Nama_Kategori }}
+                        </option>
+                    @endforeach
+                @endif
             </select>
         </div>
         @foreach([
