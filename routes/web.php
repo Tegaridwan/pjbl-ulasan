@@ -11,12 +11,7 @@ use App\Http\Controllers\KategoriController;
 
 // 1. Public / Guest Routes (Bisa Diakses Siapa Saja)
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('/penjual/{id}', [PenjualController::class, 'show'])->name('penjual.detail');
 Route::get('/ulasan/{id}', [TambahUlasanController::class, 'create'])->name('ulasan.create');
-
-Route::prefix('penjual')->group(function () {
-    Route::get('/{id}', [PenjualController::class, 'show'])->name('penjual.detail');
-});
 
 Route::prefix('ulasan')->group(function () {
     Route::get('/{id}', [TambahUlasanController::class, 'create'])->name('ulasan.create');
@@ -51,3 +46,5 @@ Route::middleware('auth')->group(function () {
         Route::put('/kategori/{id}', [KategoriController::class, 'update'])->name('kategori.update');
     });
 });
+
+Route::get('/penjual/{id}', [PenjualController::class, 'show'])->name('penjual.detail');
